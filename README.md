@@ -63,3 +63,7 @@ GET http://localhost:3000 HTTP/1.1
 7. We need to run our server with `npm start` and go to our **.rest** file, then click in the **Send Request** link and we'll see a a server runnning locally with our phrase!.
 
 ![Terminal picture](/assets/hello-world.png)
+
+## Connecting our project to the Database
+1. We will use MongoDB for this project, in the terminal type: `npm install mongodb`.
+2. To keep our credentials safe we neeed to save them in a **.env** file. Create a new file and renaming it to **.env**. To make that our project could read key-values pairs from .env we need to install it in our project typing `npm install dotenv --save`. 

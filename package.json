@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/HuairaNimrod/real-estate-services#readme",
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "mongodb": "^6.15.0",
     "nodemon": "^3.1.9",
     "save": "^2.9.0"
   }
