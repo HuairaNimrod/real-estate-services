@@ -15,20 +15,35 @@ const getClients = (req, res) => {
 };
 
 
-const createClient = async (req, res) => {
-  try{
+const createClient = (req, res) => {
+  try {
     const client = req.body;
-    const response =  await mongodb.getDb().db('real-estate').collection('clients').insertOne(client);
-    if (response.acknowledged) {
-      console.log("Client added:", client);
-      res.status(201).json(response); // Successfully inserted
-    } else {
-      res.status(500).json('Some error occurred while creating the client.');
-    }
+    // Wrapping the async operation in a Promise to allow try-catch
+    mongodb.getDb().db('real-estate').collection('clients').insertOne(client)
+      .then(response => {
+        if (response.acknowledged) {
+          console.log("Client added:", client);
+          res.status(201).json(response); // Successfully inserted
+        } else {
+          res.status(500).json('Some error occurred while creating the client.');
+        }
+      })
+      .catch(err => {
+        throw err; // Manually throw to be caught in the catch block
+      });
   } catch (err) {
     console.error('Error creating client:', err);
     res.status(500).json({ message: 'Internal Server Error', error: err.message });
   }
 };
 
-module.exports = { getClients, createClient };
+const updateClient = async (req, res) => {
+  try {
+    await mongodb.getDb().db('real-estate').collection('clients').findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).send('Operation update');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+module.exports = { getClients, createClient, updateClient };

@@ -5,11 +5,22 @@ POST http://localhost:3000/tenants HTTP/1.1
 content-type: application/json
 
 {   
-    "firstName": "3",
-    "lastName": "3",
+    "firstName": "Max",
+    "lastName": "Reyn",
     "propertyNumber": "002",
     "phoneNumber": "9877896525",
     "contacted": "false",
-    "message":""
+    "message":"Holi"
+
+}
+###
+PUT http://localhost:3000/tenants/67f6e3e3abf4c8e06672cd31 HTTP/1.1 
+{   
+    "firstName": "Max",
+    "lastName": "Reyn",
+    "propertyNumber": "002",
+    "phoneNumber": "9877896525",
+    "contacted": "false",
+    "message":"Holi 2"
 
 }
