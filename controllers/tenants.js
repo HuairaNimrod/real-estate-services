@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const mongodb = require('../db/connect');
 
 const getClients = (req, res) => {
@@ -37,12 +38,30 @@ const createClient = (req, res) => {
   }
 };
 
-const updateClient = async (req, res) => {
+const updateClient =  (req, res) => {
   try {
-    await mongodb.getDb().db('real-estate').collection('clients').findByIdAndUpdate(req.params.id, req.body);
-    res.status(200).send('Operation update');
+    const client = req.body;
+    const clientId = new ObjectId(req.params.id);
+
+    mongodb.getDb().db('real-estate').collection('clients').findOneAndUpdate({_id:clientId},{$set:client} )
+      .then(response =>{
+        if(response){
+          console.log("Client updated:", client);
+          res.status(200).send(client);
+        }
+        else{
+          res.status(404).json({ message: 'Client not found' });
+        }
+          
+      })
+      .catch(
+        err => {
+          throw err; // Manually throw to be caught in the catch block
+      });
+      
   } catch (error) {
-    res.status(500).send(error);
+    console.error('Error creating client:', error);
+    res.status(500).json({ error: error.message });
   }
 };
 

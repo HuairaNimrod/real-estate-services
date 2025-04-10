@@ -14,13 +14,15 @@ content-type: application/json
 
 }
 ###
-PUT http://localhost:3000/tenants/67f6e3e3abf4c8e06672cd31 HTTP/1.1 
+PUT http://localhost:3000/tenants/67eb0ea23c23a22c4f366b71 HTTP/1.1 
+content-type: application/json
+
 {   
-    "firstName": "Max",
-    "lastName": "Reyn",
-    "propertyNumber": "002",
-    "phoneNumber": "9877896525",
-    "contacted": "false",
-    "message":"Holi 2"
+    "firstName": "Maxi",
+    "lastName": "Lalay",
+    "propertyNumber": "0031",
+    "phoneNumber": "9877896526",
+    "contacted": false,
+    "message":"send me another 2 messages"
 
 }
