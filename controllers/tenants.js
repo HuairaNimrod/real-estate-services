@@ -65,4 +65,27 @@ const updateClient =  (req, res) => {
   }
 };
 
-module.exports = { getClients, createClient, updateClient };
+const deleteClient = (req, res) =>{
+
+  const clientId = new ObjectId(req.params.id);
+try{
+  mongodb.getDb().db('real-estate').collection('clients').deleteOne({_id:clientId})
+      .then(response => {
+        if(response.deletedCount ==1){
+          console.log("Client deleted");
+          res.status(200).send(response);
+        }
+        else{
+          res.status(404).json({ message: 'Client not found' });
+        }
+    })
+  }
+catch(error){
+  console.error('Error creating client:', error);
+    res.status(500).json({ error: error.message });
+}
+  
+
+};
+
+module.exports = { getClients, createClient, updateClient, deleteClient };

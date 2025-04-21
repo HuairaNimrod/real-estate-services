@@ -22,7 +22,10 @@ content-type: application/json
     "lastName": "Lalay",
     "propertyNumber": "0031",
     "phoneNumber": "9877896526",
-    "contacted": false,
-    "message":"send me another 2 messages"
+    "contacted": true,
+    "message":"send me another 3 messages"
 
 }
+
+###
+DELETE http://localhost:3000/tenants/67f567da6e8de1f899b88ff2 HTTP/1.1
